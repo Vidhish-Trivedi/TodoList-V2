@@ -9,7 +9,7 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 mongoose.connect("mongodb://127.0.0.1:27017/todolistDB", {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -94,6 +94,35 @@ app.get("/:customListName", function(req, res){
     });
 });
 
+app.get("/:customListName/open", function(req, res){
+    const customListName = _.capitalize(req.params.customListName);
+
+    my_utils.List.findOne({name: customListName}, function(err, foundList){      // foundList is an object from DB.
+        if(err){
+            console.log(`There was an error: ${err}`);
+        }
+
+        else{
+            if(foundList){
+                console.log("List exists...");
+                res.render("listOne", {listTitle: customListName, newListItems: foundList.items});
+            }
+        
+            else{
+                console.log("Creating new list...");
+                const list = new my_utils.List({
+                    name: customListName,
+                    items: my_utils.defaultItems
+                });
+                list.save();
+                res.render("listOne", {listTitle: customListName, newListItems: list.items});
+            }
+        }
+    });
+});
+
+
+
 // Add new tasks to lists.
 app.post("/", function(req, res){
    
@@ -132,10 +161,12 @@ app.post("/delete", function(req, res){
             }
             else{
                 console.log("Task removed successfully.");
-                res.redirect("/");
+                res.redirect("/"); 
             }
         }
         );
+    
+        my_utils.List.deleteOne({items: 0});
 });
 
 app.listen(3000, function(){

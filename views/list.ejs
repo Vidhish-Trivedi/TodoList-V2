@@ -14,7 +14,7 @@
         <% listCollection.forEach(function(li){ %>
             <div class="l-item">
                 <div class="box" id="heading">
-                    <h1><%= li.name %></h1>
+                    <h1><a href="<%= 'http://localhost:3000/'+li.name+'/open' %>"><%= li.name %></a></h1>
                 </div>
             
                 <div class="box">
