@@ -26,11 +26,23 @@ a:active {
     text-decoration: none;
 }
 
+.i-add{
+    transition: all 0.4s ease-in-out;
+    box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.i-add:hover{
+    cursor: pointer;
+    background-color: gold;
+    color: #1F4287;
+    box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.32);
+}
+
 .l-del{
     position: relative;
     color: #000;
     background-color: gold;
-    left: 320px;
+    left: 295px;
     bottom: 83px;
     transition: all 0.4s ease-in-out;
     box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
