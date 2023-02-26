@@ -125,7 +125,6 @@ app.get("/:customListName/open", function(req, res){
 
 // Add new tasks to lists.
 app.post("/", function(req, res){
-   
     // Add newly created task to DB.
     const itemName = req.body.newTask;
     const listName = req.body.listBtn;
@@ -145,7 +144,7 @@ app.post("/", function(req, res){
     });
 });
 
-// Delete a task from an appropriate 
+// Delete a task.
 app.post("/delete", function(req, res){
     const checked_id = req.body.id_checked;     // Id of the checked my_utils.Item
     const checked_listName = req.body.listName_checked;
@@ -161,12 +160,27 @@ app.post("/delete", function(req, res){
             }
             else{
                 console.log("Task removed successfully.");
-                res.redirect("/"); 
+                res.redirect("/");
             }
         }
         );
-    
-        my_utils.List.deleteOne({items: 0});
+});
+
+// Delete a list.
+app.post("/deleteList", function(req, res){
+    const del_listName = req.body.listDel;
+
+    // Delete from List collection.
+    // Using MongoDB docs
+    my_utils.List.deleteOne({name: del_listName}, function(err){
+        if(err){
+            console.log(`There was an error: ${err}`);
+        }
+        else{
+            console.log(`List ${del_listName} deleted.`);
+            res.redirect("/");
+        }
+    });
 });
 
 app.listen(3000, function(){

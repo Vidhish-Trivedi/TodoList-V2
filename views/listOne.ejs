@@ -11,9 +11,9 @@
 <body>
     <div class="box" id="heading">
         <h1><%= listTitle %></h1>
-        <div class="item">
-            <button class="l-del" type="submit" name="listDel" value="<%= listTitle+"_delete" %>" >-</button>
-        </div>
+        <form class="item" id="l-del-form" action="/deleteList" method="post">
+            <button class="l-del" type="submit" name="listDel" value="<%= listTitle %>" >-</button>
+        </form>
     </div>
 
     <div class="box">
