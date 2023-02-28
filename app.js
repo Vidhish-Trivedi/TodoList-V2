@@ -50,50 +50,7 @@ app.get("/", function(req, res){
     });
 });
 
-// Dynamic routic using Express.
-app.get("/:customListName", function(req, res){
-    const customListName = _.capitalize(req.params.customListName);
-
-    my_utils.List.findOne({name: customListName}, function(err, foundList){      // foundList is an object from DB.
-        if(err){
-            console.log(`There was an error: ${err}`);
-        }
-
-        else{
-            if(foundList){
-                console.log("List exists...");
-                my_utils.List.find({}, function(err, foundLists){
-                    if(err){
-                        console.log(`There was an error: ${err}`);
-                    }
-                    else{
-                        res.redirect("/");
-                    }
-                });
-            }
-        
-            else{
-                console.log("Creating new list...");
-                const list = new my_utils.List({
-                    name: customListName,
-                    items: my_utils.defaultItems
-                });
-                list.save();
-                
-                my_utils.List.find({}, function(err, foundLists){
-                    if(err){
-                        console.log(`There was an error: ${err}`);
-                    }
-            
-                    else{
-                        res.redirect("/");
-                    }
-                });
-            }
-        }
-    });
-});
-
+// Dynamic routing using Express.
 app.get("/:customListName/open", function(req, res){
     const customListName = _.capitalize(req.params.customListName);
 
