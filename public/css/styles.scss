@@ -1,4 +1,4 @@
-html {
+.my-body {
   background-color: #E4E9FD;
   background-image: -webkit-linear-gradient(65deg, #000 50%, #CCC 50%);
   min-height: 1000px;
@@ -27,8 +27,18 @@ a:active {
 }
 
 .i-add{
+    min-height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border-color: transparent;
+    background-color: #082032;
+    color: #FFF;
+    font-size: 30px;
+    border-width: 0;
     transition: all 0.4s ease-in-out;
     box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'helvetica neue';
+
 }
 
 .i-add:hover{
@@ -39,13 +49,25 @@ a:active {
 }
 
 .l-del{
+    min-height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border-color: transparent;
+
+    font-size: 30px;
+    border-width: 0;
     position: relative;
     color: #000;
     background-color: gold;
     left: 295px;
-    bottom: 83px;
+    bottom: 65px;
     transition: all 0.4s ease-in-out;
     box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.l-head{
+    position: relative;
+    top: 10px;
 }
 
 #l-del-form{
@@ -72,6 +94,8 @@ a:active {
     border-radius: 5px;
     transition: all 0.4s ease-in-out;
     box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'helvetica neue';
+
 }
 
 .l-item:hover{
@@ -84,9 +108,10 @@ a:active {
 h1 {
   color: #fff;
   padding: 10px;
+  font-family: 'helvetica neue';
 }
 
-.box {
+.my-box {
   max-width: 400px;
   margin: 50px auto;
   background: #00A8CC;
@@ -138,17 +163,6 @@ form.item {
   margin-left: 20px;
 }
 
-button {
-  min-height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  border-color: transparent;
-  background-color: #082032;
-  color: #FFF;
-  font-size: 30px;
-  border-width: 0;
-}
-
 input[type="text"] {
   text-align: center;
   height: 60px;
@@ -168,12 +182,6 @@ input[type="text"]:focus {
 ::placeholder {
   color: #323232;
   opacity: 1;
-}
-
-footer {
-  color: white;
-  color: rgba(0, 0, 0, 0.5);
-  text-align: center;
 }
 
 @import './media';
