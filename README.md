@@ -1,10 +1,12 @@
 # TodoList-V2
 #### - A simple web app which allows a user to create and manage multiple Todo lists and save data persistently using MongoDB.
+#### - This is an update over the original Todolist project: https://github.com/Vidhish-Trivedi/TodoList  
 
 ## Features
 ---
 - By default, all lists are displayed to the user as a grid on the root route ("/").  
 - The application will create routes on the fly, allowing the user to create multiple lists on different routes such as "/home/open", "/work/open", "/", etc.
+- Users can now use the form in the nav-bar to create new lists or open existing ones (the old way, mentioned in the next point, still works).
 - "/<list_name>/open" will create a seperate list with <list_name> as its name. If a list with this name already exists, it will be displayed to the user.
 - The user can delete a completed task using the checkbox next to it, or delete an entire list.
 - The user can add a new task using the + button.
