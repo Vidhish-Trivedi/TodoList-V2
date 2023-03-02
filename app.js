@@ -51,6 +51,7 @@ app.get("/", function(req, res){
 });
 
 // Dynamic routing using Express.
+// Open or create a list (GET).
 app.get("/:customListName/open", function(req, res){
     const customListName = _.capitalize(req.params.customListName);
 
@@ -77,7 +78,6 @@ app.get("/:customListName/open", function(req, res){
         }
     });
 });
-
 
 
 // Add new tasks to lists.
@@ -139,6 +139,36 @@ app.post("/deleteList", function(req, res){
         }
     });
 });
+
+// For form in nav-bar, creating a new list or opening an existing one (POST).
+app.post("/createList", function(req, res){
+    const customListName = _.capitalize(req.body.newListName);
+    console.log(customListName);
+
+    my_utils.List.findOne({name: customListName}, function(err, foundList){      // foundList is an object from DB.
+        if(err){
+            console.log(`There was an error: ${err}`);
+        }
+
+        else{
+            if(foundList){
+                console.log("List exists...");
+                res.render("listOne", {listTitle: customListName, newListItems: foundList.items});
+            }
+        
+            else{
+                console.log("Creating new list...");
+                const list = new my_utils.List({
+                    name: customListName,
+                    items: my_utils.defaultItems
+                });
+                list.save();
+                res.render("listOne", {listTitle: customListName, newListItems: list.items});
+            }
+        }
+    });
+});
+
 
 app.listen(3000, function(){
     console.log("Server listening on port 3000.");
